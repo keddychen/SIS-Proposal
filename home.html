@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<style type="text/css">
+		.container{
+			width: 1000px;
+			margin:50px auto 0;
+			border:#666 solid 1px;
+			box-shadow: 1px 2px 4px #ccc;
+			font-size: 15px;
+		}
+		.wrapper{
+			margin:15px;
+			border:#666 solid 1px;
+			padding: 14px;
+		}
+		.wrapper li{
+			height: 25px;
+			line-height: 25px;
+			cursor: default;
+		}
+		.wrapper span{
+			display: inline-block;
+			width: 140px;
+		}
+		table{
+			width: 970px;
+			border-collapse:collapse;
+			table-layout:fixed;
+			margin:15px;
+		}
+		table,th,td{
+			border:#333 solid 1px;
+		}
+		.table-content td{
+			padding:6px;
+			position: relative;
+		}
+		.add,.reduce{
+			width: 20px;
+			height: 20px;
+		}
+		.add{
+			background: url(add.png) no-repeat 0/100%;
+		}
+		.reduce{
+			background: url(reduce.png) no-repeat 0/100%;
+		}
+		.content-tbody select,.content-tbody input{
+			width: 160px;
+			height: 25px;
+			border:#666 solid 1px;
+			margin-left: 29px;
+		}
+		.content-tbody input{
+			text-indent: 8px;
+		}
+		.content-tbody tr:hover{
+			background-color: #efefef;
+		}
+		.btn{
+			border-top: #333 solid 1px;
+			margin-top:20px;
+		}
+		.save{
+			width: 100px;
+			height: 32px;
+			line-height: 32px;
+			color: #fff;
+			background-color: yellowgreen;
+			margin:20px 450px;
+			font-size: 16px;
+		}
+		.wrapper select{
+			width: 112px;
+		    height: 25px;
+		    margin-left: -6px;
+		    margin-right:25px;
+		    font-size: 15px;
+		}
+		.jsyz{
+			margin-left: 178px;
+		}
+		.wrapper li .jsyz-sel{
+			margin-left: 170px;
+		}
+	</style>
+	<title>Document</title>
+</head>
+<body>
+	<div class="container">
+		<ul class="wrapper">
+			<li><span>公式代码</span><span>&nbsp;表达式</span><span class="jsyz">计算因子</span></li>
+			<li>
+				<span>FL001</span>
+				<span>SA*PremRate/UnitAmt*Maturity</span>
+				<select class="jsyz-sel">
+					<option value="a">SA</option>
+					<option value="b">PremRate</option>
+					<option value="c">UniteAmt</option>
+					<option value="d">Maturity</option>
+				</select>
+			</li>
+		</ul>
+		<table class="table-content">
+			<thead>
+				<tr>
+					<td class="add"></td>
+					<td align="center">条件</td>
+					<td align="center">项</td>
+					<td align="center">符号</td>
+					<td align="center">值</td>
+				</tr>
+			</thead>
+			<tbody class="content-tbody">
+				<tr>
+					<td class="reduce"></td>
+					<td>
+						<select>
+							<option value="01">如果</option>
+							<option value="02">那么</option>
+						</select>
+					</td>
+					<td>
+						<select>
+							<option value="001">保单年度</option>
+							<option value="002">被保人年龄</option>
+						</select>
+					</td>
+					<td>
+						<select>
+							<option value="1">大于</option>
+							<option value="2">小于</option>
+							<option value="3">等于</option>
+							<option value="4">大于等于</option>
+							<option value="5">小于等于</option>
+							<option value="6">不等于</option>
+						</select>
+					</td>
+					<td>
+						<input type="text" value="" placeholder="请输入..."/>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="btn">
+			<button class="save">保存</button>
+		</div>
+	</div>
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.add').on('click',function(){
+				var trSel='<tr>'+'<td class="reduce"></td>'+
+				'<td><select><option value="01">如果</option><option value="02">那么</option></select></td>'+
+				'<td><select><option value="001">保单年度</option><option value="002">被保人年龄</option></select></td>'+
+				'<td><select><option value="1">大于</option><option value="2">小于</option><option value="3">等于</option><option value="4">大于等于</option><option value="5">小于等于</option><option value="6">不等于</option></select></td>'+
+				'<td><input type="text" value="" placeholder="请输入..."/></td>'+
+				'</tr>'
+				$('.content-tbody').append(trSel);
+			});
+			$('.content-tbody').on('click','.reduce',function(){
+				$(".content-tbody tr").eq($(this).parent().index()).remove();
+			});
+		});
+	</script>
+</body>
+</html>
